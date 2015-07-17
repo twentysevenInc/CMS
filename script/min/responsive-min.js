@@ -1,0 +1,1 @@
+function contains(n,i){return-1!=n.indexOf(i)}

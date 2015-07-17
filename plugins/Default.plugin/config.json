@@ -1,0 +1,22 @@
+{
+	"Name":"Test",
+	"Author":"Twentyseven",
+	"Version":"0.1",
+	"Group":"0",
+	"widgets":
+	[
+		{
+			"id":"com.twysvn.stats",
+			"path":"Stats",
+		}
+
+	],
+	"settings":
+	[
+		{
+			"id":"com.twysvn.settings",
+			"path":"SettingsTest",
+		}
+
+	] 
+}

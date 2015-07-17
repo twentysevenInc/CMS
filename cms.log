@@ -1,0 +1,11 @@
+log[24/06/2015 01:28:33]: Starting CMS State check
+err[24/06/2015 01:28:53]: No internet connection
+err[24/06/2015 01:28:53]: Finished CMS State check. it seems like something's not working
+log[24/06/2015 01:31:08]: Starting CMS State check
+err[24/06/2015 01:31:13]: Health's not o.k.
+log[24/06/2015 01:31:13]: Finished CMS State check. Everything seems great
+log[24/06/2015 01:44:16]: Starting CMS State check
+err[24/06/2015 01:44:21]: Health's not o.k.
+log[24/06/2015 01:44:21]: Finished CMS State check. Everything seems great
+log[24/06/2015 11:33:39]: Starting CMS State check
+log[24/06/2015 11:33:45]: Finished CMS State check. Everything seems great
