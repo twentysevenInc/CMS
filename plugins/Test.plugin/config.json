@@ -1,0 +1,26 @@
+{
+	"name":"Test",
+	"author":"Michael",
+	"version":"0.1",
+	"visible":1,
+	"widgets":
+	[
+		{
+			"id":"com.twysvn.test",
+			"name":"HelloWidget",
+			"reload":0,
+			"width":2,
+			"heigth":2
+		}
+
+	],
+	"settings":
+	[
+		{
+			"id":"com.twysvn.settings",
+			"name":"HelloSettings",
+			"width":"2"
+		}
+
+	] 
+}

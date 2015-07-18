@@ -17,14 +17,17 @@ CREATE TABLE IF NOT EXISTS `cms-group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `admin` tinyint(1) NOT NULL,
-  `guestmode` int(11) NOT NULL,
+  `guestmode` tinyint(1) NOT NULL,
+  `profile` tinyint(1) NOT NULL,
+  `notification` tinyint(1) NOT NULL,
+  `plugin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 INSERT INTO `cms-group` (`id`, `name`, `admin`, `guestmode`) VALUES
-(1, 'Admin', 1, 0),
-(2, 'Moderator', 0, 0),
-(3, 'User', 0, 0);
+(1, 'Admin', 1, 0, 1, 1, 1),
+(2, 'Moderator', 1, 0, 1, 0, 1),
+(3, 'User', 0, 0, 1, 0, 1);
 
 -- -----------------------------------------------------------------
 
@@ -146,4 +149,3 @@ INSERT INTO `cms-widget` (`id`, `name`, `pluginId`, `reload`, `width`, `height`)
 (5, 'Cocktail', 1, 0, 1, 4),
 (6, 'Unsplash', 1, 0, 2, 2),
 (7, 'Date', 1, 0, 1, 2);
-

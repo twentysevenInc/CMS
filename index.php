@@ -97,9 +97,25 @@ if(!checkLogin()){
 	<div class="sidebar-content">
 		<div class="sidbar-section">
 			<h1>User</h1>
-			<a href="javascript:void(0);" onclick="javascript:cmsLoadSite('dashboard.php')" class="sidebar-selected"><img src="img/sidebar/dash.png"><span>Dashboard</span></a>
-			<a href="javascript:void(0);" onClick="javascript:cmsLoadSite('user.php')"><img src="img/sidebar/user.png"><span>Profile</span></a>
+			<a href="javascript:void(0);" onclick="javascript:cmsSetAndLoadSite('dashboard.php', this)" class="sidebar-selected"><img src="img/sidebar/dash.png"><span>Dashboard</span></a>
+			<?php
+			if ($_SESSION['user']){
+			?>
+			<a href="javascript:void(0);" onClick="javascript:cmsSetAndLoadSite('user.php', this)"><img src="img/sidebar/user.png"><span>Profile</span></a>
+			<?php
+			}
+			if ($_SESSION['profile']){
+			?>
+			<a href="javascript:void(0);" onClick="javascript:cmsSetAndLoadSite('notifications.php', this)"><img src="img/sidebar/default.png"><span>Notifications</span></a>
+			<?php
+			}
+			?>
+			<a href="javascript:void(0);" onclick="javascript:cmsSetAndLoadSite('settings.php', this)"><img src="img/sidebar/settings.png"/><span>Settings</span></a>
+			<a href="logout.php"><img src="img/sidebar/logout.png"/><span>Logout</span></a>
 		</div>
+		<?php
+		if ($_SESSION['plugin']){
+		?>
 		<div class="sidbar-section">
 			<h1>Plugins</h1>
 		<?php
@@ -108,18 +124,23 @@ if(!checkLogin()){
 				if($row['visible']){
 					$file = (file_exists("plugins/".$row['name'].".plugin/icon.png")) ? "plugins/".$row['name'].".plugin/icon.png" : "img/sidebar/default.png";
 					echo("
-							<a href=\"javascript:void(0);\" onclick=\"javascript:cmsLoadSite('plugins/".$row['name'].".plugin/index.php')\"><img src=\"".$file."\"><span>".$row['name']."</span></a>
+							<a href=\"javascript:void(0);\" onclick=\"javascript:cmsSetAndLoadSite('plugins/".$row['name'].".plugin/index.php', this)\"><img src=\"".$file."\"><span>".$row['name']."</span></a>
 						");
 				}
 			}
+			echo "</div>";
+		}
 		?>
-		</div>
+		<?php
+		if ($_SESSION['admin']){
+		?>
 		<div class="sidbar-section">
 			<h1>Admin</h1>
-			<a href="javascript:void(0);" onclick="javascript:cmsLoadSite('settings.php')"><img src="img/sidebar/settings.png"/><span>Settings</span></a>
-			<a href="javascript:void(0);" onclick="javascript:cmsLoadSite('state.php')"><img src="img/sidebar/state.png"/><span>State</span></a>
-			<a href="logout.php"><img src="img/sidebar/logout.png"/><span>Logout</span></a>
+			<a href="javascript:void(0);" onclick="javascript:cmsSetAndLoadSite('state.php', this)"><img src="img/sidebar/state.png"/><span>State</span></a>
 		</div>
+		<?php
+		}
+		?>
 	</div>
 </section>
 <section id="overlay">

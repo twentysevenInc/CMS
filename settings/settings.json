@@ -1,0 +1,16 @@
+{
+	"settings":[
+		{
+			"id":"com.twysvn.manageusers",
+			"path":"settings/manageusers"
+		},
+		{
+			"id":"com.twysvn.manageplugins",
+			"path":"settings/manageplugins"
+		},
+		{
+			"id":"com.twysvn.managegroups",
+			"path":"settings/managegroups"
+		}
+	]
+}

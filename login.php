@@ -1,4 +1,5 @@
 <?php
+
 	include('include/database.php');
 	include('include/error.php');
 	include('include/general.php');
@@ -11,10 +12,10 @@
 
 	// check for SQLi
 	$conn = new mysqli($dat->dbHost, $dat->dbUser, $dat->dbPass, $dat->db);
-	$stmt = $conn->prepare("SELECT groupId, id, name, avatar FROM user WHERE name=? AND pass=?");
+	$stmt = $conn->prepare("SELECT groupId,  `cms-user`.id,  `cms-user`.name, avatar, admin, guestmode, profile, notification, plugin FROM  `cms-user` INNER JOIN  `cms-group` AS gr ON ( gr.id =  `cms-user`.groupId ) WHERE  `cms-user`.name = ? AND pass = ?");
 	$stmt->bind_param("ss", $username, $password);
 	$stmt->execute();
-	$stmt->bind_result($groupid, $id, $name, $avatar);
+	$stmt->bind_result($groupid, $id, $name, $avatar, $admin, $guestmode, $profile, $notification, $plugin);
 	$stmt->fetch();
 
 	$ret = false;
@@ -30,8 +31,15 @@
     	$_SESSION['id'] = $id;
     	$_SESSION['avatar'] = $avatar;
 
+    	$_SESSION['admin'] = $admin;
+    	$_SESSION['guestmode'] = $guestmode;
+    	$_SESSION['profile'] = $profile;
+    	$_SESSION['notification'] = $notification;
+    	$_SESSION['plugin'] = $plugin;
+
     	$_SESSION['time'] = time();
 		header('Location: index.php');
+
 		$ret = true;
 	}
 	$stmt->close();

@@ -53,10 +53,10 @@
 		return 0;
 	}
 
-	function setAdmin(){
+	function setAdmin(){ // in adminSettings.php umschreibn
         $('#settings-content').fadeOut(function(){
             $('#settings-content').empty();
-            $.getJSON( "components/settings.json", function(data) {
+            $.getJSON( "settings/settings.json", function(data) {
                 var data = data['settings'];
                 var arr = [];
                 $.each( data, function( key, val ) {
@@ -67,7 +67,7 @@
                 for (var i = arr.length - 1; i >= 0; i--) {
 
                     $.ajax({
-                        url: 'components/'+arr[i]['path']+'/module.css',
+                        url: 'settings/'+arr[i]['path']+'/module.css',
                         type: 'GET',
                         async: false,
                         success: function(result) {
@@ -75,7 +75,7 @@
                         }
                     });
                     $.ajax({
-                        url: 'components/'+arr[i]['path']+'/module.php',
+                        url: 'settings/'+arr[i]['path']+'/module.php',
                         type: 'GET',
                         async: false,
                         success: function(result) {
@@ -96,8 +96,8 @@
 			setCookie('settings', 'CMS', 69);
 			$('#settings-content').fadeOut(function(){
                 $('#settings-content').empty();
-                
-                var data = doAjaxRequest("components/cmsSettings.php", "GET");
+
+                var data = doAjaxRequest("settings/cmsSettings.php", "GET");
                 $('#settings-content').append(data);
                 $('#settings-content').fadeIn();
             });
@@ -106,8 +106,8 @@
 			setCookie('settings', 'Plugins', 69);
 			$('#settings-content').fadeOut(function(){
                 $('#settings-content').empty();
-                
-                var data = doAjaxRequest("components/pluginSettings.php", "GET");
+
+                var data = doAjaxRequest("settings/pluginSettings.php", "GET");
                 $('#settings-content').append(data);
                 $('#settings-content').fadeIn();
             });
@@ -116,8 +116,8 @@
 			setCookie('settings', 'Notifications', 69);
 			$('#settings-content').fadeOut(function(){
                 $('#settings-content').empty();
-                
-                var data = doAjaxRequest("components/notificationSettings.php", "GET");
+
+                var data = doAjaxRequest("settings/notificationSettings.php", "GET");
                 $('#settings-content').append(data);
                 $('#settings-content').fadeIn();
             });
@@ -151,10 +151,10 @@
 <div id = "settings">
 	<ul class = "menu">
 		<!-- <h1><a href="javascript:void(0);" onClick="changeView(this)" data="Profile">Profile</a></h1> -->
-		<h1><a href="javascript:void(0);" onClick="changeView(this)" class="active" data="CMS">CMS</a></h1>
-		<h1><a href="javascript:void(0);" onClick="changeView(this)" data="Plugins">Plugins</a></h1>
-		<h1><a href="javascript:void(0);" onClick="changeView(this)" data="Notifications">Notifications</a></h1>
-		<h1><a href="javascript:void(0);" onClick="changeView(this)" data="Admin">Admin</a></h1>
+		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/cms.php', this)" class="active" data="CMS">CMS</a></h1>
+		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/plugin.php', this)" data="Plugins">Plugins</a></h1>
+		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/notifications.php', this)" data="Notifications">Notifications</a></h1>
+		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/admin.php', this)" data="Admin">Admin</a></h1>
 	</ul>
 
 	<section id = "settings-content">

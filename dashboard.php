@@ -8,10 +8,10 @@ if(!checkLogin()){
 }
 
   $dat = new Database;
-  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM userDashboard 
-  	INNER JOIN widget ON userDashboard.widgetId = widget.id 
-  	INNER JOIN user ON userDashboard.userId = user.id 
-  	INNER JOIN plugin ON plugin.id = widget.pluginId WHERE user.id = " . $_SESSION['id'] . " ORDER BY userDashboard.position");
+  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM `cms-userDashboard` AS userDashboard 
+  	INNER JOIN `cms-widget` AS widget ON userDashboard.widgetId = widget.id 
+  	INNER JOIN `cms-user` AS user ON userDashboard.userId = user.id 
+  	INNER JOIN `cms-plugin` AS plugin ON plugin.id = widget.pluginId WHERE user.id = " . $_SESSION['id'] . " ORDER BY userDashboard.position");
 
   $dashboard = array();
 

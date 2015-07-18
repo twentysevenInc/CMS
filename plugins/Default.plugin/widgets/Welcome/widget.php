@@ -51,5 +51,5 @@ if(!checkLogin()){
 <div id ="welcome-widget">
 	<h1>Cheers</h1>
 	<h2>Here's your mind-blowing new dashboard</h2>
-	<p>Check out some cool widgets <a href="index.php?page=settings">here</a></p>
+	<p>Check out some cool widgets <a href="javascript:void(0);" onclick="javascript:navigateTo('settings/lib/addWidget.php', undefined)">here</a></p>
 </div>

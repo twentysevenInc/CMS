@@ -16,9 +16,10 @@
 browse_history = [];
 
 $(document).ready(function(){
-	
-	// load dashboard when ready
+
+	// load last site when ready
 	var cookie = getCookie('cms-site')
+	// console.log(cookie);
 	if(cookie) cmsLoadSite(cookie);
 	else cmsLoadSite('dashboard.php');
 
@@ -38,7 +39,6 @@ $(document).ready(function(){
  //    $( "#dashboard").disableSelection();
 });
 
-
 function cmsLoadSite(url){
 	setCookie("cms-site", url, 100);
 	var time = 200;
@@ -46,11 +46,20 @@ function cmsLoadSite(url){
 	$('#overlay').fadeIn(time);
 	setTimeout(function(){
 		doAjax(url, 'GET', '', function(data){
+			// console.log(data);
 			$('#content').html(data);
 			$('#overlay').fadeOut(200);
 			$('#content').fadeIn(200);
 		});
 	}, time);
+}
+
+function cmsSetAndLoadSite(url, elem){
+	// set elem active
+	$('#sidebar .sidebar-content .sidebar-selected').removeAttr('class', 'sidebar-selected');
+	$(elem).attr('class', 'sidebar-selected');
+
+	cmsLoadSite(url);
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -84,6 +93,7 @@ function notifications(e){
 
 function sidebar(e){
 	e.preventDefault();
+	return;
 	if(document.getElementById('sidebar').style.display == 'none'){
 
 		document.getElementById('sidebar').style.marginLeft = '-78%';
@@ -136,9 +146,9 @@ function sidebar(e){
 
 		// document.getElementsByTagName('nav')[0].firstChild.style.display = 'block';
 		// document.getElementById('content').style.width = '100%';
-		// document.getElementsByTagName('nav')[0].style.width = '100%';	
+		// document.getElementsByTagName('nav')[0].style.width = '100%';
 	}
-	
+
 }
 $(document).ready(function(){
 	if(getCookie('showsidebar') == 'true'){
@@ -211,9 +221,9 @@ function showWarning(title, message, buttonTitles, buttonColors, actions){
 	};
 }
 
-function pushSite(data){
+function pushSite(url, data){
 	data = data.replace("$(document).ready", "");
-	browse_history.push(data);
+	browse_history.push([url, data]);
 }
 
 function popSite(){
@@ -222,16 +232,22 @@ function popSite(){
 
 function navigateBack(){
 	$('#content').fadeOut(100);
+	var site = popSite();
+	setCookie("cms-site", site[1]);
 	setTimeout(function(){
-		$('#content').html(popSite());
+		$('#content').html(site[1]);
 		$('#content').fadeIn(100);
 	}, 100);
 }
 
 function navigateTo(url){
-	pushSite($('#content').html());
+	var cookieUrl = getCookie("cms-site");
+	setCookie("cms-site", url);
+	pushSite(cookieUrl, $('#content').html());
 	var btn = '<h3><img src="img/back.svg"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>';
 	$('#content').fadeOut(100);
+	$('#overlay').fadeIn(200);
+
 	setTimeout(function(){
 		$.ajax({
 		type: "GET",
@@ -239,7 +255,38 @@ function navigateTo(url){
 		success: function(data){
 			var menu = '<ul class="menu">\n'+btn+'\n</ul>\n';
 			$('#content').html(menu + data);
+			$('#overlay').fadeOut(200);
 			$('#content').fadeIn(100);
+		},
+		error: function(xhr, status, error){
+			alert("An error occured");
+			//reload page
+			var err = eval("(" + xhr.responseText + ")");
+			alert(err.Message);
+		}
+	});
+	}, 100);
+}
+
+function menuLoadSite(elem, url, src){
+	var cookieUrl = getCookie("cms-site");
+	setCookie("cms-site", url);
+	pushSite(cookieUrl, $('#content').html());
+	// console.log($('#content').html());
+	$(elem).fadeOut(100);
+	$('#overlay').fadeIn(200);
+
+	$('#content .menu .active').removeAttr('class', 'active');
+	$(src).attr('class', 'active');
+
+	setTimeout(function(){
+		$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data){
+			$(elem).html(data);
+			$('#overlay').fadeOut(200);
+			$(elem).fadeIn(100);
 		},
 		error: function(xhr, status, error){
 			alert("An error occured");

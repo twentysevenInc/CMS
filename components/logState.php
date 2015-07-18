@@ -8,7 +8,7 @@
 	#sys-log .log-div, #sys-log span{
 		font-family: "Office Code Pro", monospace;
 	}
-    
+
     #delete-log-button  {
 /*
         float: right;
@@ -19,7 +19,7 @@
         top: 7rem;
         font-size: 2rem;
     }
-    
+
 </style>
 
 <script>
@@ -52,7 +52,7 @@
 			    if(startsWith($line, "err"))
 			    	echo "<span style='color:#FB7070'>".preg_replace("/err/", "", $line, 1)."</span>"."<br/>";
 			    else
-			    	echo "<span style='color:#2b2b2b'>".preg_replace("/log/", "", $line, 1)."</span>"."<br/>";
+			    	echo "<span style='color:#eee'>".preg_replace("/log/", "", $line, 1)."</span>"."<br/>";
 			}
 
 			fclose($f);
