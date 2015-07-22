@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../../../include/general.php');
+include('../../../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -48,6 +48,9 @@ foreach ($info["widgets"] as $w) {
 // insert settings ???
 
 // move plugin to folder
+if (file_exists("../../../../plugins/".$name.".plugin")) {
+	rm("../../../../plugins/".$name.".plugin");
+}
 rename("../tmp/".$name.".plugin", "../../../../plugins/".$name.".plugin");
 // rm("../../../../plugins/".$name.".plugin");
 

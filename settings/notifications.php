@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../include/general.php');
+include('../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -96,9 +96,9 @@ if(!checkLogin()){
 	.settings-push-content-title{
 		width: 100%;
 	}
-	
+
 	.settings-push-content-title h3{
-			
+
 	}
 
 	.settings-push-content-title h4{

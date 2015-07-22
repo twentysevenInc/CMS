@@ -1,12 +1,12 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../../include/general.php');
+include('../../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 ?>
 
-<style type="text/css">	
+<style type="text/css">
 #add-group form{
 	margin: 0.5rem 1rem;
 }
@@ -34,9 +34,9 @@ if(!checkLogin()){
 		var opt = $(form).find('option:selected').text();
 
 		var ret = doAjax(
-			'settings/settings/manageusers/insertUser.php', 
-			'POST', 
-			'user='+user+'&group='+opt+'&email='+email, 
+			'settings/settings/manageusers/insertUser.php',
+			'POST',
+			'user='+user+'&group='+opt+'&email='+email,
 			function(data){
 				var obj = jQuery.parseJSON(data);
 				$('#new-password').append('Password: '+obj['password']);
@@ -70,7 +70,7 @@ if(!checkLogin()){
 					while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 						echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
 					}
-				?>	  
+				?>
 				</select>
 				<input type="submit" value="Create" class="button green-button"/>
 				<h5 id="new-password"></h5>

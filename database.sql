@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `cms-group` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
-INSERT INTO `cms-group` (`id`, `name`, `admin`, `guestmode`) VALUES
+INSERT INTO `cms-group` (`id`, `name`, `admin`, `guestmode`, `profile`, `notification`, `plugin`) VALUES
 (1, 'Admin', 1, 0, 1, 1, 1),
 (2, 'Moderator', 1, 0, 1, 0, 1),
 (3, 'User', 0, 0, 1, 0, 1);
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `cms-groupEnablesService` (
 
 CREATE TABLE IF NOT EXISTS `cms-plugin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL UNIQUE,
   `author` varchar(30) NOT NULL,
   `version` varchar(20) NOT NULL,
-  `pushId` int(11) NOT NULL,
+  `pushId` int(11) NOT NULL UNIQUE,
   `visible` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -128,6 +128,10 @@ CREATE TABLE IF NOT EXISTS `cms-userDashboard` (
   `position` int(11) NOT NULL,
   `height` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `cms-userDashboard` (`userId`, `widgetId`, `width`, `position`, `height`) VALUES
+(1, 1, 3, 1, 2);
+
 
 -- -----------------------------------------------------------------
 

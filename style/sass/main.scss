@@ -36,10 +36,11 @@ $menu-background : #1A222F;
 $loading-screen-background : #1A222F;
 
 /* Checkboxes */
-$checkbox-disabled-background : #f7426b;
-$checkbox-enabled-background : #2ECC71;
+$checkbox-off-background : #f7426b;
+$checkbox-on-background : #2ECC71;
 $checkbox-switch-background : #fff;
 $checkbox-text : #fff;
+$checkbox-disabled-background : #bbb;
 
 /* Header (h1, h4) like settings*/
 $header-h1-color : #eee;
@@ -64,7 +65,7 @@ $sidebar-width : 17vw;
 
 @font-face {
     font-family: Font Awesome;
-    src: url("font/fontawesome.ttf");
+    src: url("../font/fontawesome.ttf");
 }
 
 *{
@@ -346,11 +347,15 @@ select:after{
 	height: 2rem;
 	width: 4rem;
 	cursor: hand;
-	background: $checkbox-disabled-background;
+	background: $checkbox-off-background;
 }
 
 .checkbox input[type="checkbox"]:checked{
-	background: $checkbox-enabled-background;
+	background: $checkbox-on-background;
+}
+
+.checkbox input[type="checkbox"][disabled]{
+   background: $checkbox-disabled-background;
 }
 
 .checkbox input[type="checkbox"]:checked + .switch{
@@ -389,8 +394,10 @@ select:after{
 	content: "on";
 	color: $checkbox-text;
 	position: absolute;
-	top: 0.17rem;
-	right: 2rem;
+	// top: 0.17rem;
+   top: 0.2rem;
+	// right: 2rem;
+   right: 1.8rem;
 	text-transform: uppercase;
 }
 
@@ -398,8 +405,10 @@ select:after{
 	content: "off";
 	color: $checkbox-text;
 	position: absolute;
-	top: 0.17rem;
-	right: -1.8rem;
+	// top: 0.17rem;
+   top: 0.2rem;
+	// right: -1.8rem;
+	right: -2rem;
 	text-transform: uppercase;
 }
 
@@ -469,6 +478,10 @@ select:after{
 	text-align: center;
 	text-align: left;
 	overflow: auto;
+
+   *{
+      color: black;
+   }
 }
 
 .list .item input[type="text"]{
@@ -791,6 +804,21 @@ nav a:hover{
 			transition: 0.2s all ease;
 		}
 	}
+
+   #notification-sidebar-label{
+      display: inline-block;
+      vertical-align: center;
+      text-align: center;
+      background: #F22613;
+      height: 1.25rem;
+      width: 1.25rem;
+      line-height: 1.25rem;
+      border-radius: 1.25rem;
+
+      margin: 0.3rem 1rem;
+      float: right;
+      opacity: 1;
+   }
 }
 
 // #sidebar .sidebar-user{

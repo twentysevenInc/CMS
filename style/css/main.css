@@ -6,7 +6,7 @@
 /* Sizes */
 @font-face {
   font-family: Font Awesome;
-  src: url("font/fontawesome.ttf"); }
+  src: url("../font/fontawesome.ttf"); }
 * {
   margin: 0 auto;
   padding: 0;
@@ -247,6 +247,9 @@ select:after {
 .checkbox input[type="checkbox"]:checked {
   background: #2ECC71; }
 
+.checkbox input[type="checkbox"][disabled] {
+  background: #bbb; }
+
 .checkbox input[type="checkbox"]:checked + .switch {
   left: 2.2rem; }
 
@@ -279,16 +282,16 @@ select:after {
   content: "on";
   color: #fff;
   position: absolute;
-  top: 0.17rem;
-  right: 2rem;
+  top: 0.2rem;
+  right: 1.8rem;
   text-transform: uppercase; }
 
 .switch:after {
   content: "off";
   color: #fff;
   position: absolute;
-  top: 0.17rem;
-  right: -1.8rem;
+  top: 0.2rem;
+  right: -2rem;
   text-transform: uppercase; }
 
 /* Page header (h1, h4) zb settings*/
@@ -347,6 +350,8 @@ select:after {
   text-align: center;
   text-align: left;
   overflow: auto; }
+  .list .item * {
+    color: black; }
 
 .list .item input[type="text"] {
   margin-top: -0.4rem;
@@ -587,6 +592,18 @@ nav a:hover {
       border-left: 2pt solid rgba(255, 255, 255, 0.4);
       -webkit-transition: 0.2s all ease;
               transition: 0.2s all ease; }
+  #sidebar #notification-sidebar-label {
+    display: inline-block;
+    vertical-align: center;
+    text-align: center;
+    background: #F22613;
+    height: 1.25rem;
+    width: 1.25rem;
+    line-height: 1.25rem;
+    border-radius: 1.25rem;
+    margin: 0.3rem 1rem;
+    float: right;
+    opacity: 1; }
 
 /*#sidebar .sidebar-user * {
 	color: black;

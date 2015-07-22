@@ -1,12 +1,12 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../../include/general.php');
+include('../../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 ?>
 
-<style type="text/css">	
+<style type="text/css">
 #add-group form{
 	margin: 0.5rem 1rem;
 }

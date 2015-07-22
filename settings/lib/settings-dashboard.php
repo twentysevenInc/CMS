@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../include/general.php');
+include('../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -8,9 +8,9 @@ if(!checkLogin()){
 <?php
 
   $dat = new Database;
-  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM `cms-userDashboard` AS userDashboard 
-  	INNER JOIN `cms-widget` AS widget ON userDashboard.widgetId = widget.id 
-  	INNER JOIN `cms-user` AS user ON userDashboard.userId = user.id 
+  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM `cms-userDashboard` AS userDashboard
+  	INNER JOIN `cms-widget` AS widget ON userDashboard.widgetId = widget.id
+  	INNER JOIN `cms-user` AS user ON userDashboard.userId = user.id
   	INNER JOIN `cms-plugin` AS plugin ON plugin.id = widget.pluginId WHERE user.id = " . $_SESSION['id'] . " ORDER BY userDashboard.position");
 
   $dashboard = array();

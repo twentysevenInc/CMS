@@ -18,7 +18,7 @@ if(!checkLogin()){
 
 	<!-- CSS -->
 	<!-- <link rel="stylesheet" href="style/main.css" type="text/css"> -->
-	<link rel="stylesheet" href="style/main.css" type="text/css">
+	<link rel="stylesheet" href="style/css/main.css" type="text/css">
 
 	<!-- Responsive -->
 	<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no">
@@ -34,7 +34,7 @@ if(!checkLogin()){
 	<!-- CSS/JS -->
 	<?php
 		$db = new Database;
-		$result = $db->query("SELECT * FROM `cms-plugin` AS plugin INNER JOIN `cms-groupEnablesPlugin` AS gei ON (plugin.id = gei.pluginId) LIMIT 0 , ".$maxSidebarItems);
+		$result = $db->query("SELECT * FROM `cms-plugin` AS plugin INNER JOIN `cms-groupEnablesPlugin` AS gei ON (plugin.id = gei.pluginId)");
 		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			if($_SESSION['group'] <= $row['groupId']){
 				echo ("<link rel=\"stylesheet\" href=\"plugins/".$row['name'].".plugin/main.css\" type=\"text/css\">");
@@ -106,7 +106,7 @@ if(!checkLogin()){
 			}
 			if ($_SESSION['profile']){
 			?>
-			<a href="javascript:void(0);" onClick="javascript:cmsSetAndLoadSite('notifications.php', this)"><img src="img/sidebar/default.png"><span>Notifications</span></a>
+			<a href="javascript:void(0);" onClick="javascript:cmsSetAndLoadSite('notifications.php', this)"><img src="img/sidebar/default.png"><span>Notifications</span><span id="notification-sidebar-label">1</span></a>
 			<?php
 			}
 			?>
@@ -119,7 +119,7 @@ if(!checkLogin()){
 		<div class="sidbar-section">
 			<h1>Plugins</h1>
 		<?php
-			$result = $db->query("SELECT plugin.visible, plugin.name FROM `cms-plugin` AS plugin INNER JOIN `cms-groupEnablesPlugin` AS gei ON (plugin.id = gei.pluginId) WHERE gei.groupId = (SELECT `cms-user`.groupId FROM `cms-user` WHERE `cms-user`.name = '".$_SESSION['user']."') LIMIT 0 , ".$maxSidebarItems);
+			$result = $db->query("SELECT plugin.visible, plugin.name FROM `cms-plugin` AS plugin INNER JOIN `cms-groupEnablesPlugin` AS gei ON (plugin.id = gei.pluginId) WHERE gei.groupId = (SELECT `cms-user`.groupId FROM `cms-user` WHERE `cms-user`.name = '".$_SESSION['user']."')");
 			while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 				if($row['visible']){
 					$file = (file_exists("plugins/".$row['name'].".plugin/icon.png")) ? "plugins/".$row['name'].".plugin/icon.png" : "img/sidebar/default.png";

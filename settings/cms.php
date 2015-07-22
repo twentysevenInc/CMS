@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../include/general.php');
+include('../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -9,7 +9,7 @@ if(!checkLogin()){
 <style type="text/css">
 	#settings-cms{
 		position: relative;
-		padding: 2rem 1.5rem;
+		/*padding: 2rem 1.5rem;*/
 		width: 100%;
 		/*background: #eee;*/
 	}
@@ -30,11 +30,10 @@ if(!checkLogin()){
 	}
 
 	#settings-cms ul{
-		width: 35%;
+		width: calc(35% - 3rem);
 		float: left;
-		margin: 1rem 0;
-		margin-top: 3rem;
-		padding-right: 1.5rem;
+		margin: 1rem 1.5rem;
+		margin-top: 1rem;
 	}
 
 	#settings-cms ul li{
@@ -43,6 +42,7 @@ if(!checkLogin()){
 		padding: 0.5em 1em;
 		background: #eee;
 		border: 1pt solid #fff;
+		color: #000;
 	}
 
 	#settings-cms ul li span{
@@ -60,9 +60,10 @@ if(!checkLogin()){
 
 	#settings-cms #preview-dashboard{
 		margin: 1rem 0;
-		margin-top: 3rem;
-		width: 65%;
-		background: #03C9A9;
+		margin-top: 1rem;
+		margin-right: 1.5rem;
+		width: calc(65% - 1.5rem);
+		/*background: #03C9A9;*/
 		float: left;
 	}
 
@@ -87,12 +88,6 @@ if(!checkLogin()){
 		-webkit-justify-content: center;
 		-ms-flex-pack: center;
 		justify-content: center;
-
-		/*-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;*/
-		/*-webkit-flex-direction: row;
-		-ms-flex-direction: row;
-		flex-direction: row;*/
 	}
 
 	#settings-cms #preview-dashboard #dashboard h1{

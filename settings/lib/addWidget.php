@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../include/general.php');
+include('../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -45,11 +45,12 @@ if(!checkLogin()){
 			$(elem).removeClass('normal-button');
 			$(elem).addClass('green-button');
 			$(elem).html('Done');
+			console.log(data);
 
 			setTimeout(function(){
 				$(elem).removeClass('green-button');
 				$(elem).addClass('normal-button');
-				$(elem).html('Add');				
+				$(elem).html('Add');
 			}, 500);
 		});
 	}
@@ -82,7 +83,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		<div class="list">
 
 		<?php
-			$res = $db->query('SELECT widget.name, widget.id FROM `cms-widget` AS widget 
+			$res = $db->query('SELECT widget.name, widget.id FROM `cms-widget` AS widget
 				INNER JOIN `cms-plugin` AS plugin ON widget.pluginid = plugin.id
 				WHERE plugin.name = \''.$row['name'].'\'');
 			while ($r = mysql_fetch_array($res, MYSQL_ASSOC)) {

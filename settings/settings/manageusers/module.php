@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../../include/general.php');
+include('../../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -17,20 +17,20 @@ if(!checkLogin()){
 		delete_group = $(delete_elem).find('.table-group').text();
 
 		showWarning(
-			'Are you sure?', 
-			'This user will be deleted permanently!', 
+			'Are you sure?',
+			'This user will be deleted permanently!',
 				[
 					'Go ahead',
 					'Cancel'
-				], 
+				],
 				[
 					'red-button',
 					'normal-button'
-				], 
+				],
 				[
 					function(){
 						ajaxUserDeleteRequest();
-					}, 
+					},
 					function(){
 						hideAlerts();
 					}
@@ -40,9 +40,9 @@ if(!checkLogin()){
 
 	function ajaxUserDeleteRequest(){
 		var ret = doAjax(
-			'settings/settings/manageusers/deleteUser.php', 
-			'POST', 
-			'user='+delete_name+'&group='+delete_group, 
+			'settings/settings/manageusers/deleteUser.php',
+			'POST',
+			'user='+delete_name+'&group='+delete_group,
 			function(data){
 				$(delete_elem).slideUp(300);
 				$(delete_elem).remove();

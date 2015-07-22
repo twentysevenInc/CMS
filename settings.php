@@ -1,141 +1,15 @@
 <?php
-
+include('include/general.php');
+include('include/database.php');
+if(!checkLogin()){
+	header("Location: login.html");
+}
 ?>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		changeView($('.menu h1 a')[0]);
+		menuLoadSite('#settings-content', 'settings/cms.php', $('#settings .menu a')[0]);
 	});
-
-
-	function doAjaxRequest(url, type, data){
-		var ret;
-		if (data) {
-			$.ajax({
-				type: type,
-				url: url,
-				data: data,
-				async: false,
-				success: function(data){
-					ret = data;
-				},
-				error: function (request, status, error) {
-					ret = request;
-				}
-			});
-		}else{
-			$.ajax({
-				type: type,
-				url: url,
-				async: false,
-				success: function(data){
-					ret = data;
-				},
-				error: function (request, status, error) {
-					ret = request;
-				},
-				complete: function (jqXHR, textStatus) {
-					// $('#overlay').fadeOut();
-				},
-				beforeSend: function (jqXHR, settings) {
-					// $('#overlay').fadeIn();
-				}
-			});
-		};
-		return ret;
-	}
-
-	function compare(a,b) {
-		if (a['id'] > b['id'])
-			return -1;
-		if (a['id'] < b['id'])
-			return 1;
-		return 0;
-	}
-
-	function setAdmin(){ // in adminSettings.php umschreibn
-        $('#settings-content').fadeOut(function(){
-            $('#settings-content').empty();
-            $.getJSON( "settings/settings.json", function(data) {
-                var data = data['settings'];
-                var arr = [];
-                $.each( data, function( key, val ) {
-                    arr.push(val);
-                });
-                arr.sort(compare);
-
-                for (var i = arr.length - 1; i >= 0; i--) {
-
-                    $.ajax({
-                        url: 'settings/'+arr[i]['path']+'/module.css',
-                        type: 'GET',
-                        async: false,
-                        success: function(result) {
-                            $('#settings-content').append('<style type="text/css">\n'+result+'\n</style>');
-                        }
-                    });
-                    $.ajax({
-                        url: 'settings/'+arr[i]['path']+'/module.php',
-                        type: 'GET',
-                        async: false,
-                        success: function(result) {
-                            $('#settings-content').append('<div class="settings-table"> \n'+result+' \n</div>');
-                        }
-                    });
-                };
-                $('#settings-content').fadeIn();
-            });
-        });
-	}
-
-	function changeView(link){
-		$('.menu h1 a').removeClass("active");
-		link.className = "active";
-
-		if($(link).attr('data') == 'CMS'){
-			setCookie('settings', 'CMS', 69);
-			$('#settings-content').fadeOut(function(){
-                $('#settings-content').empty();
-
-                var data = doAjaxRequest("settings/cmsSettings.php", "GET");
-                $('#settings-content').append(data);
-                $('#settings-content').fadeIn();
-            });
-
-		}else if($(link).attr('data') == 'Plugins'){
-			setCookie('settings', 'Plugins', 69);
-			$('#settings-content').fadeOut(function(){
-                $('#settings-content').empty();
-
-                var data = doAjaxRequest("settings/pluginSettings.php", "GET");
-                $('#settings-content').append(data);
-                $('#settings-content').fadeIn();
-            });
-
-		}else if($(link).attr('data') == 'Notifications'){
-			setCookie('settings', 'Notifications', 69);
-			$('#settings-content').fadeOut(function(){
-                $('#settings-content').empty();
-
-                var data = doAjaxRequest("settings/notificationSettings.php", "GET");
-                $('#settings-content').append(data);
-                $('#settings-content').fadeIn();
-            });
-
-		}else if($(link).attr('data') == 'Admin'){
-			setCookie('settings', 'Admin', 69);
-			setAdmin();
-		}else if($(link).attr('data') == 'Profile'){
-			setCookie('settings', 'Profile', 69);
-			setCookie('settings', 'CMS', 69);
-			$('#settings-content').fadeOut(function(){
-                $('#settings-content').empty();
-                var data = doAjaxRequest("user.php", "GET");
-                $('#settings-content').append(data);
-                $('#settings-content').fadeIn();
-            });
-		}
-	}
 </script>
 
 <style type="text/css">
@@ -150,11 +24,14 @@
 
 <div id = "settings">
 	<ul class = "menu">
-		<!-- <h1><a href="javascript:void(0);" onClick="changeView(this)" data="Profile">Profile</a></h1> -->
 		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/cms.php', this)" class="active" data="CMS">CMS</a></h1>
-		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/plugin.php', this)" data="Plugins">Plugins</a></h1>
+		<?php if ($_SESSION['notification']){?>
 		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/notifications.php', this)" data="Notifications">Notifications</a></h1>
+		<?php } if ($_SESSION['plugin']){?>
+		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/plugin.php', this)" data="Plugins">Plugins</a></h1>
+		<?php } if ($_SESSION['admin']){?>
 		<h1><a href="javascript:void(0);" onClick="menuLoadSite('#settings-content', 'settings/admin.php', this)" data="Admin">Admin</a></h1>
+		<?php } ?>
 	</ul>
 
 	<section id = "settings-content">

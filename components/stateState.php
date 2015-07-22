@@ -40,12 +40,12 @@ if(!checkLogin()){
 .state-table tr:nth-of-type(odd) {
     background: #eee;
 }
-    
+
 #check-system-button {
     float: right;
     font-weight: normal;
 }
-    
+
 
 @media (max-width: 320pt) {
     .state-table td{
@@ -102,17 +102,17 @@ if(!checkLogin()){
                 $everythingok = false;
             }
         }
-        
+
         if($everythingok){
             ?><span class="awesome state-check"></span>everything seems great<?php
         }else{
             ?><span class="awesome state-check state-check-error"></span>it seems like something's not working<?php
-        } 
+        }
         ?>
-    
+
     </h1>
     <table class="state-table">
-        
+
         <tr>
         <?php
 
@@ -120,7 +120,7 @@ if(!checkLogin()){
 
             foreach ($json_a as $key => $value){
                 ?><td><span class="awesome state-check
-                <?php 
+                <?php
                     if(strcmp($value,'true')!=0){
                         echo ' state-check-error';
                     }
@@ -134,7 +134,7 @@ if(!checkLogin()){
                     }
                 ?>
                 </span><?php echo $key; ?></td><?php
-                
+
                 if($i%4==0){
                     ?></tr><tr><?php
                 }

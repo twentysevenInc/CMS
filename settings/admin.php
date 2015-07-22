@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../include/general.php');
+include('../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -22,6 +22,15 @@ if(!checkLogin()){
 ?>
 
 <script>
+
+function compare(a,b) {
+	if (a['id'] > b['id'])
+		return -1;
+	if (a['id'] < b['id'])
+		return 1;
+	return 0;
+}
+
 $(document).ready(function(){
 	setAdmin();
 });

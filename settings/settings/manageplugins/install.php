@@ -1,12 +1,12 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include('../../../include/general.php');
+include('../../../include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 ?>
 
-<style type="text/css">	
+<style type="text/css">
 
 #add-group .file-upload{
 	width: 100%;
@@ -36,12 +36,12 @@ if(!checkLogin()){
 }
 
 #add-group .install-plugin-preview{
+	max-width: 30rem;
 	position: relative;
 	margin: 1.5rem 1.2rem;
-	border: 1px solid #ddd;
-	
+
 	border-radius: 0.25em;
-	background: #eee;
+	background: #1A222F;
 	display: none;
 }
 
