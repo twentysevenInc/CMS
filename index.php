@@ -6,6 +6,8 @@ include('include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
+
+define('TEST', 'Testvalue');
 ?>
 <head>
 	<title>CMS</title>

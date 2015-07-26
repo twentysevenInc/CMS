@@ -7,8 +7,10 @@ if(!checkLogin()){
 ?>
 
 <script type="text/javascript">
+pluginName = ""
 	function deletePlugin(elem){
 		var name = $($($(elem).parent()).parent().find('td')[0]).text();
+		pluginName = name;
 		var author = $($($(elem).parent()).parent().find('td')[2]).text();
 		showWarning('Are you sure?',
 		'\''+name+'\' by '+author+' will be unistalled from your cms',
@@ -20,7 +22,11 @@ if(!checkLogin()){
 			'normal-button'
 		],[
 			function(){
-				//
+				doAjax('settings/settings/manageplugins/lib/make-unistall.php', 'POST', {'name':pluginName}, function(data){
+					hideAlerts();
+					setCookie('cms-site', 'dashboard.php', 100);
+					document.location = document.location;
+				});
 			},
 			function(){
 				hideAlerts();

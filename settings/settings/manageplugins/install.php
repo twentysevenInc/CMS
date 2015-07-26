@@ -96,10 +96,13 @@ $(document).ready(function (e) {
 	}));
 });
 
+pluginTitle = "";
+
 function readConfig(data){
 	plugin_config = data;
 
 	var title = data['name'];
+	pluginTitle = title;
 	var author = data['author'];
 	var version = data['version'];
 
@@ -118,7 +121,7 @@ function installCmsPlugin(){
 			console.log(data);
 			data = JSON.parse(data);
 			if(data['type'] == 1){
-				navigateTo('settings/settings/manageplugins/add-group.php');
+				navigateTo('settings/settings/manageplugins/add-group.php?name='+pluginTitle);
 			}
 		});
 }

@@ -8,7 +8,7 @@ if(!checkLogin()){
 
 <style type="text/css">
 	.plugin-check-users{
-		
+
 	}
 
 	.plugin-check-users li{
@@ -44,13 +44,31 @@ if(!checkLogin()){
 </style>
 
 <script type="text/javascript">
+function setGroups(){
+	var arr = $('.add-group-panel');
+	for (var i = 0; i < arr.length; i++) {
+		if($(arr[i]).find('input').is(':checked')){
+			var group = $(arr[i]).find('label').html();
+			var plugin = "<?php echo $_GET['name']; ?>";
+			connect(group, plugin);
+		}
+	}
+}
 
+function connect(group, plugin){
+	doAjax("settings/settings/manageplugins/lib/connect.php", 'POST', {"group":group, "plugin":plugin}, function(data){
+		// doAjax("plugin/"+plugin+".plugin/install.php", "get", "", function(){
+		// 	navigateTo("plugin/"+plugin+".plugin/install.php");
+		// })
+		navigateTo("settings/settings/manageplugins/installed.php");
+	});
+}
 </script>
 
 <div id="add-group">
 	<div class="page-header">
 		<h1>Cms groups</h1>
-		<h4>Choose the groups that can use the Plugin.</h4>
+		<h4>Choose the groups that can use the Plugin "<?php echo $_GET['name']; ?>".</h4>
 	</div>
 
 	<div class="plugin-check-users">
@@ -60,7 +78,7 @@ if(!checkLogin()){
 			$result = $db->query("SELECT name FROM `cms-group`");
 			while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 				?>
-				<li>
+				<li class="add-group-panel">
 					<label><?php echo $row['name']; ?></label>
 					<div class="checkbox onoffswitch maincheckbox">
 						<input type='checkbox' name='service' id='checkbox' />
@@ -71,7 +89,7 @@ if(!checkLogin()){
 		?>
 		</div>
 		<div class="plugin-check-users-actions">
-			<a class="button green-button" href="javascript:void(0);" onclick="">Next</a>
+			<a class="button green-button" href="javascript:void(0);" onclick="javascript:setGroups();">Next</a>
 		</div>
 	</div>
 </div>
