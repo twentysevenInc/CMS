@@ -1,6 +1,6 @@
 <?php
-include('../include/general.php');
-include('../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -137,6 +137,7 @@ if(!checkLogin()){
 		elem = $(elem).parent();
 		// console.log($(elem));
 		doAjax('settings/lib/deleteWidget.php', 'POST', 'data='+$(elem).attr('data')+'&pos='+$(elem).attr('pos'), function(d){
+			console.log(d);
 			$(elem).animate({
 				'heigth':0,
 				'opacity':0,
@@ -155,9 +156,13 @@ if(!checkLogin()){
 
 <div id="settings-cms">
 	<div class="page-header">
-		<h1>Dashboard</h1>
-		<h4>Customize your Dashboard.</h4>
-		<a href="javascript:void(0);" onclick="javascript:navigateTo('settings/lib/addWidget.php', undefined)" class="normal-button button" id="add-widget">Add Widget</a>
+		<div class="page-header-title">
+			<h1>Dashboard</h1>
+			<h4>Customize your Dashboard.</h4>
+		</div>
+		<div class="page-header-actions">
+			<a href="javascript:void(0);" onclick="javascript:navigateTo('settings/lib/addWidget.php', undefined)" class="normal-button button" id="add-widget">Add Widget</a>
+		</div>
 	</div>
 
 	<ul>

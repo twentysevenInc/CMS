@@ -1,14 +1,18 @@
 <?php
-include('../include/general.php');
-include('../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 ?>
 
 <div class="page-header">
-	<h1>Plugin Settings</h1>
-	<h4>Once we're done here will be your Plugin settings.</h4>
+	<div class="page-header-title">
+		<h1>Plugin Settings</h1>
+		<h4>Once we're done here will be your Plugin settings.</h4>
+	</div>
+	<div class="page-header-actions">
+	</div>
 </div>
 
 <div class="list">

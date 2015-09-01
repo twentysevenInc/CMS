@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }

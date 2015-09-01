@@ -1,13 +1,13 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 
 $htmlContent = file_get_contents('http://unsplash.com');
 
-preg_match_all('/<img[^>]+>/i',$htmlContent, $imgTags); 
+preg_match_all('/<img[^>]+>/i',$htmlContent, $imgTags);
 
 $img = "";
 for ($i = 0; $i < count($imgTags[0]); $i++) {
@@ -97,7 +97,7 @@ for ($i = 0; $i < count($imgTags[0]); $i++) {
 		font-size: 30pt;
 		text-align: center;
         vertical-align: middle;
-        
+
         position: absolute;
         top:0;
         left:0;
@@ -106,7 +106,7 @@ for ($i = 0; $i < count($imgTags[0]); $i++) {
         display: block;
 		opacity: 0;
 	}
-    
+
     #unsplash a span {
 		width: 30pt !important;
 		height: 50pt !important;
@@ -136,7 +136,7 @@ for ($i = 0; $i < count($imgTags[0]); $i++) {
 
 <div id="unsplash">
 	<div id="unsplash-image" href="http://unsplash.com"></div>
-	<div id="unsplash-overlay">	
+	<div id="unsplash-overlay">
 	</div>
     <a target="_blank" href="http://unsplash.com">
         <span class="awesome"></span>

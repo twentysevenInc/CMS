@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -9,8 +9,8 @@ if(!checkLogin()){
   // $database = new Database;
 
   // $itemsQuery = $database->prepare("
-  // 	SELECT todo.name, todo.done FROM todo 
-  // 	INNER JOIN user ON user.id = todo.user 
+  // 	SELECT todo.name, todo.done FROM todo
+  // 	INNER JOIN user ON user.id = todo.user
   // 	WHERE user.id = :user");
 
   // $itemsQuery->execute([
@@ -22,8 +22,8 @@ if(!checkLogin()){
 
   $dat = new Database;
   $result = $dat->query("
-  	SELECT todo.name, todo.done, todo.id FROM todo 
-  	INNER JOIN user ON user.id = todo.user 
+  	SELECT todo.name, todo.done, todo.id FROM todo
+  	INNER JOIN user ON user.id = todo.user
   	WHERE user.id = ".$_SESSION['id']);
 
   $items = array();
@@ -51,7 +51,7 @@ if(!checkLogin()){
 	#todo-list {
 		margin: 1rem;
 		overflow: scroll;
-		overflow-x: hidden; 
+		overflow-x: hidden;
 		position: absolute;
 		display: block;
 		top: 3rem;
@@ -72,11 +72,11 @@ if(!checkLogin()){
 	#todo-list li:nth-of-type(2n) .todo-item{
 		background-color: #2d2d2d;
 	}
-	#todo-list li:nth-of-type(2n) .todo-done-button, 
+	#todo-list li:nth-of-type(2n) .todo-done-button,
 	#todo-list li:nth-of-type(2n) .todo-delete-button {
 		background-color: #212121;
 	}
-	#todo-list li:nth-of-type(2n) .todo-done-button:hover, 
+	#todo-list li:nth-of-type(2n) .todo-done-button:hover,
 	#todo-list li:nth-of-type(2n) .todo-delete-button:hover {
 		background-color: #111;
 	}
@@ -188,9 +188,9 @@ if(!checkLogin()){
 		?>
 			<li>
 				<span class = "todo-item <?php echo $item->done ? ' todo-done' : ''; ?>">
-					<?php 
+					<?php
 						$tmp = $item->name;
-						$tmp = preg_replace('/[<>]*/', '', $tmp); 
+						$tmp = preg_replace('/[<>]*/', '', $tmp);
 						echo $tmp;
 					?>
 				</span>

@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -46,7 +46,7 @@ if(!checkLogin()){
 	border-radius: 6px;
 	background-color: #4183D7;
 	color: white;
-	
+
 background: #207ce5; /* Old browsers */
 background: -moz-linear-gradient(left, #207ce5 0%, #499bea 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,#207ce5), color-stop(100%,#499bea)); /* Chrome,Safari4+ */

@@ -3,23 +3,23 @@
         float:right;
         font-weight: normal;
     }
-    
+
     #update-content #changelog-header {
         margin-left: 1.5rem;
         padding-bottom: 1em;
         text-align: center;
         display: none;
     }
-    
+
     #update-content #update-changelog {
-        
+
     }
     #update-content #update-version {
         padding-bottom: 0.2em;
         font-size: 1.2rem;
         max-width: 35rem;
     }
-    
+
     #update-content .changes-list {
         list-style-type: circle !important;
         max-width: 35rem;
@@ -45,12 +45,14 @@
 
 <div id = "update-content">
     <div class="page-header">
-        <h1>CMS Update<a class="button normal-button" id="search-for-updates" href="#">Search for updates</a></h1>
-        <h4>Updates and changelog</h4>
-        
-    </div>
-    
-    
+      <div class="page-header-title">
+         <h1>CMS Update<a class="button normal-button" id="search-for-updates" href="#">Search for updates</a></h1>
+         <h4>Updates and changelog</h4>
+      </div>
+      <div class="page-header-actions">
+      </div>
+  </div>
+
     <h1 id="changelog-header">Changelog</h1>
     <ul id="update-changelog">
         <li>

@@ -90,10 +90,15 @@ if(!checkLogin()){
 ?>
 
 <div id = "sys-state">
-    <div class="page-header">
-        <h1>CMS State<a class="button normal-button" id = "check-system-button" href="javascript:void(0)" onclick="checkSystem()"><?php echo $checksystemnowtext;?></a></h1>
-        <h4>Problems and errors found by the CMS are listed here</h4>
-    </div>
+	 <div class="page-header">
+		 <div class="page-header-title">
+			 <h1>CMS State</h1>
+          <h4>Problems and errors found by the CMS are listed here</h4>
+		 </div>
+		 <div class="page-header-actions">
+			 <a class="button normal-button" id = "check-system-button" href="javascript:void(0)" onclick="checkSystem()"><?php echo $checksystemnowtext;?></a>
+		 </div>
+	 </div>
     <h1 id = "main-state">
         <?php
         $everythingok = true;

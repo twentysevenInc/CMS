@@ -35,9 +35,14 @@
 	<section id = "settings-content">
         <a href='#' class='awesome awesome-red' id="delete-log-button" onclick='deleteLog();'></a>
 		<div class="page-header">
-			<h1>CMS Log</h1>
-			<h4>Important stuff to debug the CMS</h4>
+			<div class="page-header-title">
+				<h1>CMS Log</h1>
+				<h4>Important stuff to debug the CMS</h4>
+			</div>
+			<div class="page-header-actions">
+			</div>
 		</div>
+
 		<div class="log-div"><?php
 			function startsWith($haystack, $needle)
 			{

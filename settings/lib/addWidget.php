@@ -1,6 +1,6 @@
 <?php
-include('../../include/general.php');
-include('../../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -42,23 +42,34 @@ if(!checkLogin()){
 	function addWidgetToDashboard(elem){
 		var el = $(elem).parent();
 		doAjax('settings/lib/insertWidget.php', 'POST', 'id='+el.attr('data'), function(data){
-			$(elem).removeClass('normal-button');
-			$(elem).addClass('green-button');
-			$(elem).html('Done');
 			console.log(data);
-
-			setTimeout(function(){
-				$(elem).removeClass('green-button');
-				$(elem).addClass('normal-button');
-				$(elem).html('Add');
-			}, 500);
+			showAlert(
+				'Cool!',
+				'The widget has been added!',
+				['Ok', 'Show dashboard'],
+				['normal-button', 'green-button'],
+				[
+					function(){
+						hideAlerts();
+						// cmsLoadSite('settings.php');
+					},
+					function(){
+						hideAlerts();
+						cmsLoadSite('dashboard.php');
+					}
+				]
+			);
 		});
 	}
 </script>
 
 <div class="page-header">
-	<h1>Add Widget</h1>
-	<h4>Select a widget to add it to your dashboard</h4>
+	<div class="page-header-title">
+      <h1>Widgets</h1>
+      <h4>Select a widget to add it to your dashboard.</h4>
+	</div>
+	<div class="page-header-actions">
+	</div>
 </div>
 
 <?php

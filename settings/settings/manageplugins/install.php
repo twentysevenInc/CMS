@@ -1,6 +1,6 @@
 <?php
-include('../../../include/general.php');
-include('../../../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -41,7 +41,7 @@ if(!checkLogin()){
 	margin: 1.5rem 1.2rem;
 
 	border-radius: 0.25em;
-	background: #1A222F;
+	border: 1px solid #ddd;
 	display: none;
 }
 
@@ -76,6 +76,7 @@ $(document).ready(function (e) {
 			processData:false,
 			success: function(data)
 			{
+				console.log(data);
 				data = JSON.parse(data);
 				if(data['type'] == 1){
 					$('#plugin-upload-error').addClass('file-upload-success');
@@ -131,9 +132,14 @@ function installCmsPlugin(){
 
 <div id="add-group">
 	<div class="page-header">
-		<h1>Install a Plugin</h1>
-		<h4>Please upload your Plugin.zip to install it.</h4>
+		<div class="page-header-title">
+			<h1>Install a Plugin</h1>
+			<h4>Please upload your Plugin.zip to install it.</h4>
+		</div>
+		<div class="page-header-actions">
+		</div>
 	</div>
+
 
 	<div class="file-upload">
 		<form id="plugin-file-upload" enctype="multipart/form-data" action="">

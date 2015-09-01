@@ -27,7 +27,7 @@ if(!checkLogin()){
 
 		if(empty($dashboard)){
 			?>
-				<h1>No widget added, yet</h1>
+				<h1 style="background: none; color: #fff;">No widgets on your dashboard</h1>
 			<?php
 		}
 

@@ -1,16 +1,14 @@
-
 <?php
-
-include('include/general.php');
-include('include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
 
   $dat = new Database;
-  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM `cms-userDashboard` AS userDashboard 
-  	INNER JOIN `cms-widget` AS widget ON userDashboard.widgetId = widget.id 
-  	INNER JOIN `cms-user` AS user ON userDashboard.userId = user.id 
+  $result = $dat->query("SELECT widget.name AS widgetName, userDashboard.width, userDashboard.height, plugin.name AS pluginName, widget.reload AS reload FROM `cms-userDashboard` AS userDashboard
+  	INNER JOIN `cms-widget` AS widget ON userDashboard.widgetId = widget.id
+  	INNER JOIN `cms-user` AS user ON userDashboard.userId = user.id
   	INNER JOIN `cms-plugin` AS plugin ON plugin.id = widget.pluginId WHERE user.id = " . $_SESSION['id'] . " ORDER BY userDashboard.position");
 
   $dashboard = array();
@@ -37,7 +35,7 @@ if(!checkLogin()){
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-   Required to make elements draggable in old WebKit 
+   Required to make elements draggable in old WebKit
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
@@ -45,12 +43,12 @@ if(!checkLogin()){
 	cursor: move;
 }
 .widget-over {
-  
+
 }
 </style>-->
 
 
-<!--<script type="text/javascript"> 
+<!--<script type="text/javascript">
 	var dragSrcEl = null;
 	function handleDragStart(e) {
 	 	this.style.opacity = '0.4';
@@ -63,7 +61,7 @@ if(!checkLogin()){
 	    e.preventDefault();
 	  }
 
-	  e.dataTransfer.dropEffect = 'move'; 
+	  e.dataTransfer.dropEffect = 'move';
 
 	  return false;
 	}

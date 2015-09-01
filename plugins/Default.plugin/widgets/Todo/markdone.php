@@ -1,12 +1,9 @@
 <?php
-	session_start();  
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
-
-	$path = $_SERVER['DOCUMENT_ROOT'].'/cms/';
-
-	include($path."include/general.php");
-	include($path."include/database.php");
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
+if(!checkLogin()){
+	header("Location: login.html");
+}
 
 	$db = new Database;
 	$servername = $db->dbHost;

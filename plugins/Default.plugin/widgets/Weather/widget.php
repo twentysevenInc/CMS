@@ -1,6 +1,6 @@
 <?php
-include('/var/www/cms/include/general.php');
-include('/var/www/cms/include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -63,7 +63,7 @@ if(!checkLogin()){
 
 <script type="text/javascript">
 
-	var color = ['#2C3E50', '#663399', '#DB0A5B', '#F64747', '#F5AB35', '#F1C40F', '#F5AB35', 
+	var color = ['#2C3E50', '#663399', '#DB0A5B', '#F64747', '#F5AB35', '#F1C40F', '#F5AB35',
 				'#F39C12', '#E67E22', '#F64747', '#8E44AD', '#34495E'];
 
 	$(document).ready(function(){
@@ -92,7 +92,7 @@ if(!checkLogin()){
 				$("#weather-widget h2").html(data['name']+", "+data['sys']['country']);
 
 				$('#weather-widget img').attr("src", "plugins/Default.plugin/widgets/Weather/img/sun.png");
-	
+
 				if ('clouds' in data){
 					var clouds = parseFloat(data['clouds']['all']);
 					if (clouds > 30) {

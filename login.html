@@ -1,11 +1,13 @@
-<head> 
+<head>
 <title>CMS</title>
- 
+
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" type="text/css">
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1.0">
- 
+<script src="script/min/main-min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="style/css/main.css" media="screen" title="no title" charset="utf-8">
+
 <style>
-  *{
+  /**{
     margin: 0 auto;
     padding: 0;
     text-rendering: optimizeLegibility;
@@ -20,18 +22,22 @@
   }
 
   body{
-    padding-top: 20vh;
     text-align: center;
-    background: #343144;
+    background: #1F1F21;
   }
-  
+
   body * {
     font-family: 'Source Sans Pro', sans-serif;
   }
-  
+
   h1{
     color: white;
-    padding: 1em;
+    padding: 0.5em;
+  }
+
+  form{
+     width: 17rem;
+     max-width: 90%;
   }
 
   input {
@@ -41,22 +47,98 @@
     display: block;
     padding: 0.25em 0.5em;
     text-align: left;
-    font-size: 1.1em;
+    font-size: 22px;
+    width: 100%;
+    margin: 0.5rem;
+    border-radius: 0.25rem;
   }
 
   input[type='submit']{
-    width: auto;
-    margin-top: 2rem;
+     text-align: center;
+     background: #00B16A;
+     color: #fff;
+     cursor: hand;
+
+     transition: 0.2s all ease;
   }
+  input[type='submit']:hover{
+     opacity: 0.8;
+  }
+
+   .flex-vert {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+   }*/
+   body{
+      max-height: 100vh;
+      margin: 0 !important;
+      display: inline !important;
+   }
+   form{
+      margin-top: 20vh;
+      width: 17rem;
+   }
+   label{
+      width: 100%;
+      display: block;
+      color: rgba(256, 256, 256, 0.8);
+   }
+   input{
+      width: 100%;
+      display: block;
+   }
+   input.button{
+      width: 100% !important;
+      cursor: hand;
+      margin-top: 2rem;
+      box-sizing:border-box;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;
+   }
+   h1{
+      color: #fff;
+      padding: 0.5em;
+   }
 </style>
+
+<script type="text/javascript">
+   $(document).ready(function(){
+      setCookie("cms-site", "dashboard.php", 100);
+   });
+</script>
+
 </head>
-<body>
-  <h1>CMS</h1>
-  <form action="login.php" method="POST">
+<body class="">
+  <!-- <h1>CMS Login</h1> -->
+  <form id="twysvn-cms-login" action="login.php" method="POST">
     <div id="in">
-      <input type="text" name="username" value="kimjongun" />
+      <label>Username</label>
+      <input type="text" name="username" value="schtail" />
+      <label>Password</label>
       <input type="password" name="password" value="pass123" />
     </div>
-    <input type="submit" value="Login" />
+    <input type="submit" class="button green-button" value="Login" />
   </form>
 </body>

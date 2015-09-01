@@ -23,13 +23,13 @@ $(document).ready(function(){
 	if(cookie) cmsLoadSite(cookie);
 	else cmsLoadSite('dashboard.php');
 
-	var show = getCookie('showsidebar');
-	if(show == 'false'){
-		document.getElementById('sidebar').style.display = 'none';
-		document.getElementById('content').style.width = '100%';
-		document.getElementsByTagName('nav')[0].style.width = '100%';
-		document.getElementById('overlay').style.marginLeft = '-22%';
-	}
+	// var show = getCookie('showsidebar');
+	// if(show == 'false'){
+	// 	document.getElementById('sidebar').style.display = 'none';
+	// 	document.getElementById('content').style.width = '100%';
+	// 	document.getElementsByTagName('nav')[0].style.width = '100%';
+	// 	document.getElementById('overlay').style.marginLeft = '-22%';
+	// }
 
 	// $( "#dashboard").sortable({
 	// 	update: function( event, ui ) {
@@ -244,7 +244,7 @@ function navigateTo(url){
 	var cookieUrl = getCookie("cms-site");
 	setCookie("cms-site", url);
 	pushSite(cookieUrl, $('#content').html());
-	var btn = '<h3><img src="img/back.svg"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>';
+	var btn = '<h3><img src="img/back-white.png"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>';
 	$('#content').fadeOut(100);
 	$('#overlay').fadeIn(200);
 
@@ -254,6 +254,74 @@ function navigateTo(url){
 		url: url,
 		success: function(data){
 			var menu = '<ul class="menu">\n'+btn+'\n</ul>\n';
+			$('#content').html(menu + data);
+			$('#overlay').fadeOut(200);
+			$('#content').fadeIn(100);
+		},
+		error: function(xhr, status, error){
+			alert("An error occured");
+			//reload page
+			var err = eval("(" + xhr.responseText + ")");
+			alert(err.Message);
+		}
+	});
+	}, 100);
+}
+
+function navigateToWithMenuColor(url, menuColor){
+	var cookieUrl = getCookie("cms-site");
+	setCookie("cms-site", url);
+	pushSite(cookieUrl, $('#content').html());
+	var btn = '<h3><img src="img/back.png"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>';
+	$('#content').fadeOut(100);
+	$('#overlay').fadeIn(200);
+
+	setTimeout(function(){
+		$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data){
+			var menu = '<ul class="menu '+menuColor+'">\n'+btn+'\n</ul>\n';
+			$('#content').html(menu + data);
+			$('#overlay').fadeOut(200);
+			$('#content').fadeIn(100);
+		},
+		error: function(xhr, status, error){
+			alert("An error occured");
+			//reload page
+			var err = eval("(" + xhr.responseText + ")");
+			alert(err.Message);
+		}
+	});
+	}, 100);
+}
+
+function navigateToWithMenuColorAndActions(url, menuColor, actions){
+
+	//[["title", "action", "classes"], ...]
+
+	var cookieUrl = getCookie("cms-site");
+	setCookie("cms-site", url);
+	pushSite(cookieUrl, $('#content').html());
+
+	var a = "";
+	for (var i = 0; i < actions.length; i++) {
+		a += "<a href='javascript:void(0);' onclick='"+actions[i][1]+"' class='button "+actions[i][2]+"'>"+actions[i][0]+"</a>";
+	}
+
+	var btn = '<h3><img src="img/back.png"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>' + a;
+	if (menuColor.length < 1)
+		btn = '<h3><img src="img/back-white.png"><a href="javascript:void(0);" onClick="javascript:navigateBack();">Back</a></h3>' + a;
+
+	$('#content').fadeOut(100);
+	$('#overlay').fadeIn(200);
+
+	setTimeout(function(){
+		$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data){
+			var menu = '<ul class="menu '+menuColor+'">\n'+btn+'\n</ul>\n';
 			$('#content').html(menu + data);
 			$('#overlay').fadeOut(200);
 			$('#content').fadeIn(100);

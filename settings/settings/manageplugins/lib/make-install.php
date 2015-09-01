@@ -1,9 +1,12 @@
 <?php
-include('../../../../include/general.php');
-include('../../../../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
+?>
+
+<?php
 
 function rm($path) {
  	$files = glob($path . '/*');
@@ -51,9 +54,13 @@ foreach ($info["widgets"] as $w) {
 if (file_exists("../../../../plugins/".$name.".plugin")) {
 	rm("../../../../plugins/".$name.".plugin");
 }
+if (file_exists("../__MACOSX")) {
+	rm("../__MACOSX");
+}
 rename("../tmp/".$name.".plugin", "../../../../plugins/".$name.".plugin");
 // rm("../../../../plugins/".$name.".plugin");
 
+l("Installed the plugin ".$name);
 echo '{"type":1, "message":"Plugin created!"}';
 
 ?>

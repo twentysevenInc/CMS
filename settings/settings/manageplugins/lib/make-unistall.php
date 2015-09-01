@@ -5,8 +5,8 @@
 // delete cms-groupEnablesPlugin
 // delete .plugin folder
 
-include('../../../../include/general.php');
-include('../../../../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -45,6 +45,7 @@ if (file_exists("../../../../plugins/".$plugin.".plugin")) {
 	rm("../../../../plugins/".$plugin.".plugin");
 }
 
+l("Installed the plugin ".$plugin);
 echo "{'return':'Uninstalled'}";
 
 ?>

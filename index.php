@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
 <?php
-include('include/general.php');
-include('include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
-
-define('TEST', 'Testvalue');
 ?>
 <head>
 	<title>CMS</title>

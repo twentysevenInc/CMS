@@ -13,7 +13,8 @@ if(!checkLogin()){
 
 	.plugin-check-users li{
 		/*border: 1px solid #ddd;*/
-		background: #1A222F;
+		background: #fff;
+		border: 1px solid #ddd;
 		width: 20rem;
 		max-width: 90%;
 		display: inline-block;
@@ -67,8 +68,12 @@ function connect(group, plugin){
 
 <div id="add-group">
 	<div class="page-header">
-		<h1>Cms groups</h1>
-		<h4>Choose the groups that can use the Plugin "<?php echo $_GET['name']; ?>".</h4>
+		<div class="page-header-title">
+			<h1>Cms groups</h1>
+			<h4>Choose the groups that can use the Plugin "<?php echo $_GET['name']; ?>".</h4>
+		</div>
+		<div class="page-header-actions">
+		</div>
 	</div>
 
 	<div class="plugin-check-users">

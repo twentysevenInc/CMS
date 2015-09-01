@@ -1,12 +1,22 @@
 <?php
-include('../../../../include/general.php');
-include('../../../../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
-    header("Location: login.html");
+	header("Location: login.html");
 }
 ?>
 
 <?php
+
+function rm($path) {
+ 	$files = glob($path . '/*');
+	foreach ($files as $file) {
+		is_dir($file) ? rm($file) : unlink($file);
+	}
+	rmdir($path);
+ 	return;
+}
+
 
 $target_dir = "../tmp/";
 $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -43,8 +53,11 @@ if ($uploadOk == 0) {
     echo "{\"type\":0, \"message\":\"Plugin wasn’t uploaded.\"}";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+	if (file_exists("../tmp/__MACOSX")) {
+		rm("../tmp/__MACOSX");
+	}
 
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         $file = $target_file;
 
         $zip = new ZipArchive;
@@ -57,18 +70,23 @@ if ($uploadOk == 0) {
             $zip->close();
             unlink($target_file);
 
+
             $name = "";
             if ($handle = opendir('../tmp/')) {
                 while (false !== ($entry = readdir($handle))) {
-                    if ($entry != "." && $entry != "..") {
+                    if ($entry != "." && $entry != ".." && $entry != "__MACOSX") {
                         $name = "$entry";
                     }
                 }
                 closedir($handle);
             }
             $path = '../tmp/'.$name.'/config.json';
-            $content = file_get_contents($path);
-            echo "{\"type\": 1, \"message\":\"Plugin successfully uploaded.\", \"data\":$content}";
+            if (file_exists($path)) {
+               $content = file_get_contents($path);
+               echo "{\"type\": 1, \"message\":\"Plugin successfully uploaded.\", \"data\":$content}";
+            }else{
+               echo "{\"type\": 0, \"message\":\"Missing config file\"}";
+            }
         } else {
             echo "{\"type\":0, \"message\":\"There was an error uploading your Plugin.\"}";
         }

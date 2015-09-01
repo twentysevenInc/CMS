@@ -1,6 +1,6 @@
 <?php
-include('../include/general.php');
-include('../include/database.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
 if(!checkLogin()){
 	header("Location: login.html");
 }
@@ -143,8 +143,12 @@ if(!checkLogin()){
 </style>
 
 <div class="page-header">
-	<h1>Add Push Services</h1>
-	<h4>Add more services that push to a device of your choice</h4>
+	<div class="page-header-title">
+		<h1>Add Push Services</h1>
+		<h4>Add more services that push to a device of your choice</h4>
+	</div>
+	<!-- <div class="page-header-actions">
+	</div> -->
 </div>
 
 <div id="settings-push-services">

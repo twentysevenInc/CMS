@@ -1,13 +1,9 @@
 <?php
-	session_start();  
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
-
-	$path = $_SERVER['DOCUMENT_ROOT'].'/cms/';
-
-	include($path."include/general.php");
-	include($path."include/database.php");
-
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/cms/include/database.php');
+if(!checkLogin()){
+	header("Location: login.html");
+}
 	$db = new Database;
 	$servername = $db->dbHost;
 	$username = $db->dbUser;
@@ -23,8 +19,8 @@
 		if(!empty($name)){
 
 			// $addQuery = $conn->prepare("
-			// 	INSERT INTO todo (name, user, done) 
-			// 	VALUES (:name, :user, 0) 
+			// 	INSERT INTO todo (name, user, done)
+			// 	VALUES (:name, :user, 0)
 			// 	");
 			// $addQuery->execute([
 			// 		'name' => $name,
@@ -32,8 +28,8 @@
 			// 	]);
 
 			$addQuery = $conn->prepare("
-				INSERT INTO todo (name, user, done) 
-				VALUES (?, ?, 0) 
+				INSERT INTO todo (name, user, done)
+				VALUES (?, ?, 0)
 				");
 			$addQuery->bind_param("ss", $name, $id);
 			$addQuery->execute();
