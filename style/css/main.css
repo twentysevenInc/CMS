@@ -696,6 +696,23 @@ nav a:hover {
   @media screen and (max-width: 700px) {
     #sidebar {
       display: none; } }
+  #sidebar .sidebar-signature {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5em 0; }
+    #sidebar .sidebar-signature a {
+      color: #fff;
+      font-size: 0.8em;
+      opacity: 0.4;
+      -webkit-transition: 0.2s all ease;
+              transition: 0.2s all ease; }
+      #sidebar .sidebar-signature a:hover {
+        opacity: 0.8; }
+      #sidebar .sidebar-signature a img {
+        height: 17px;
+        vertical-align: bottom;
+        margin: 0 0.1rem; }
   #sidebar .sidebar-content {
     position: relative;
     width: 100%;

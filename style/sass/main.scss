@@ -951,6 +951,30 @@ nav a:hover{
       display: none;
    }
 
+   .sidebar-signature{
+       position: absolute;
+       bottom: 0;
+       width: 100%;
+       padding: 0.5em 0;
+
+       a{
+           color: #fff;
+           font-size: 0.8em;
+           opacity: 0.4;
+           transition: 0.2s all ease;
+
+           &:hover{
+               opacity: 0.8;
+           }
+
+           img{
+               height: 17px;
+               vertical-align: bottom;
+               margin: 0 0.1rem;
+           }
+       }
+   }
+
 	.sidebar-content{
 		position: relative;
 		width: 100%;

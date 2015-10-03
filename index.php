@@ -142,6 +142,9 @@ if(!checkLogin()){
 		}
 		?>
 	</div>
+	<div class="sidebar-signature">
+		<a href="http://twysvn.com" target="_blank">Made with <img src="img/love.png"/> by Twentyseven</a>
+	</div>
 </section>
 <section id="overlay">
 	<img src="img/loader.svg"/>
